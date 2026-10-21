@@ -349,6 +349,11 @@ class TestUtilsText(SimpleTestCase):
         lazy_numeric = lazystr(text.phone2numeric("0800 flowers"))
         self.assertEqual(lazy_numeric, "0800 3569377")
 
+    def test_slugify_separator(self):
+        self.assertEqual(text.slugify("Hello, World!", separator="_"), "hello_world")
+        self.assertEqual(text.slugify(" spam  &  eggs ", separator="+"), "spam+eggs")
+        self.assertEqual(text.slugify("already-dashed value", separator="."), "already.dashed.value")
+
     def test_slugify(self):
         items = (
             # given - expected - Unicode?
