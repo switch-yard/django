@@ -467,10 +467,10 @@ def unescape_string_literal(s):
 @keep_lazy_text
 def slugify(value, allow_unicode=False):
     """
-    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
-    dashes to single dashes. Remove characters that aren't alphanumerics,
-    underscores, or hyphens. Convert to lowercase. Also strip leading and
-    trailing whitespace, dashes, and underscores.
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces, dots, slashes,
+    or repeated dashes to single dashes. Remove characters that aren't
+    alphanumerics, underscores, or hyphens. Convert to lowercase. Also strip
+    leading and trailing whitespace, dashes, and underscores.
     """
     value = str(value)
     if allow_unicode:
@@ -481,6 +481,7 @@ def slugify(value, allow_unicode=False):
             .encode("ascii", "ignore")
             .decode("ascii")
         )
+    value = re.sub(r"[./\\]+", " ", value)
     value = re.sub(r"[^\w\s-]", "", value.lower())
     return re.sub(r"[-\s]+", "-", value).strip("-_")
 
