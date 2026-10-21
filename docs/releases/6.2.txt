@@ -264,6 +264,10 @@ Utilities
 * The new :func:`django.utils.asyncio.maybe_aclosing` returns a context manager
   that calls ``aclose()`` on a caller-provided iterator only if it defines one.
 
+* :func:`~django.utils.text.slugify` now treats dots, slashes, and backslashes
+  as word separators, so ``slugify("example.com/path")`` returns
+  ``"example-com-path"`` instead of ``"examplecompath"``.
+
 * ...
 
 Validators
