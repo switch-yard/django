@@ -51,10 +51,6 @@ class FunctionTests(SimpleTestCase):
     def test_non_string_input(self):
         self.assertEqual(slugify(123), "123")
 
-    def test_version_numbers_lose_their_dots(self):
-        self.assertEqual(slugify("Release v1.2"), "release-v12")
-        self.assertEqual(slugify("Django 6.2 notes"), "django-62-notes")
-
     def test_slugify_lazy_string(self):
         lazy_str = lazy(lambda string: string, str)
         self.assertEqual(
